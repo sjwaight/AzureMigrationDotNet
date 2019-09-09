@@ -12,6 +12,7 @@ using InventoryService.Api.Hubs;
 using Newtonsoft.Json.Serialization;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Http;
+using Microsoft.ApplicationInsights.AspNetCore;
 
 namespace InventoryService.Api
 {
@@ -31,6 +32,8 @@ namespace InventoryService.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // The following line enables Application Insights telemetry collection.
+            services.AddApplicationInsightsTelemetry();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwagger();
             services.AddDbContext<InventoryContext>(options =>
